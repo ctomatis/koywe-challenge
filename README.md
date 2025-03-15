@@ -1,3 +1,36 @@
+# Cómo correr todo el projecto (front & back)
+
+## Clonar
+
+```bash
+$ git clone https://github.com/ctomatis/koywe-challenge.git
+$ cd koywe-challenge
+```
+
+## Configurá las variables de entorno de cada aplicación:
+
+Ejecutá los comandos en el directorio raíz del proyecto:
+
+```bash
+$ cp app/.env.example .env
+$ cp api/.env.example .env
+```
+
+## Compilar y ejecutar 
+
+El proyecto está dockerizado (con ayuda de IA). Para levantarlo, ejecutá el siguiente comando en el directorio raíz:
+
+```bash
+$ docker-compose up --build
+```
+
+## Abrir el front 
+Ir a [http://localhost:3000](http://localhost:3000/) e iniciar sessión con las sguientes credenciales: john@gmail.com / changeme
+
+> **Nota**: El servicio de consulta de cotizaciones no funciona en el contexto de docker(?). La respuesta está mockeda. 
+---
+---
+
 # 🚀 Prueba Técnica: API de Cotización de Divisas (Fiat ⇄ Crypto) con NestJS
 
 Bienvenido a este desafío para crear una **API** moderna en **NestJS** para convertir divisas fiat y criptomonedas. ¡Prepárate para demostrar tus habilidades y buenas prácticas de desarrollo!
@@ -125,6 +158,7 @@ Cada cotización generada debe registrarse en la base de datos con los siguiente
 - **Opción 2:** PostgreSQL con Prisma.
 
 > **Selecciona** la opción con la que te sientas más cómodo y **documenta** tu elección en este README.
+
 > **MongoDB**: El modelo de datos es simple, no hay relaciones o transacciones complejas y el almacenamiento funciona como un registro de actividad. Además, el desarrollo es más rápido!
 
 ---
