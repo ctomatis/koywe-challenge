@@ -125,6 +125,7 @@ Cada cotización generada debe registrarse en la base de datos con los siguiente
 - **Opción 2:** PostgreSQL con Prisma.
 
 > **Selecciona** la opción con la que te sientas más cómodo y **documenta** tu elección en este README.
+> **MongoDB**: El modelo de datos es simple, no hay relaciones o transacciones complejas y el almacenamiento funciona como un registro de actividad. Además, el desarrollo es más rápido!
 
 ---
 
