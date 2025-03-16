@@ -12,7 +12,8 @@ export default function Home() {
           Ajustamos nuestros productos según lo que necesites
         </div>
       </div>
-      <div className="flex gap-3">
+      <div className="flex gap-6">
+        <Button as={Link} href="/auth/signup" color="primary" variant="bordered" size="lg" radius="full">Registrate</Button>
         <Button as={Link} href="/auth/login" color="primary" size="lg" radius="full">Ingresar</Button>
       </div>
     </section>

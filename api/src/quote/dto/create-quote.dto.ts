@@ -1,8 +1,6 @@
 import { IsNotEmpty, IsNumber, IsString, Length, Min, Max } from "class-validator";
 
 export class CreateQuoteDto {
-    
-
     @IsNumber()
     @Min(1)
     @Max(1e10)

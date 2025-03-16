@@ -20,7 +20,7 @@ export const authOptions: NextAuthOptions = {
             },
             async authorize(credentials) {
                 let loginUser: LoginCredentials = {
-                    username: credentials?.email as string,
+                    email: credentials?.email as string,
                     password: credentials?.password as string,
                 }
                 try {
@@ -29,7 +29,7 @@ export const authOptions: NextAuthOptions = {
                         const user: User = {
                             access_token: access_token,
                             id: "id",
-                            email: "email",
+                            email: loginUser.email,
                             first_name: "first_name",
                             last_name: "last_name",
                         }

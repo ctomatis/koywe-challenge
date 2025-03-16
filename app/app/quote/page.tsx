@@ -7,7 +7,7 @@ import { Input } from '@heroui/input'
 import { Button } from '@heroui/button'
 import { Select, SelectItem } from "@heroui/select";
 import Spinner from "@/components/icon/spinner";
-import { quote } from "@/actions/auth";
+import { createQuote } from "@/actions/auth";
 
 interface Item {
   _id: string
@@ -41,7 +41,7 @@ export default function QuotePage() {
   const onSubmit = handleSubmit(async (formData) => {
     setIsDisabled(true)
     try {
-      const { statuscode, item } = await quote(formData as QuotePayload)
+      const { statuscode, item } = await createQuote(formData as QuotePayload)
       if (statuscode === 201) {
         setItem(item as Item)
       }

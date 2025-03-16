@@ -2,7 +2,7 @@ import { Session as NextAuthSession } from 'next-auth'
 import { DefaultUser } from 'next-auth';
 
 export type LoginCredentials = {
-    username: string
+    email: string
     password: string
 }
 

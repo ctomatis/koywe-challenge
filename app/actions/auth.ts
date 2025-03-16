@@ -3,9 +3,9 @@
 import { authOptions } from '@/auth'
 import { getServerSession } from 'next-auth'
 import { LoginCredentials } from "@/types/CredentialsLogin"
+import { SignUp } from '@/types/SignUp'
 
-
-const API_URL = process.env.API_URL ?? 'http://localhost:3001'
+const API_URL = process.env.API_URL || 'http://localhost:3001'
 
 export const logIn = async (loginUser: LoginCredentials) => {
   try {
@@ -21,7 +21,21 @@ export const logIn = async (loginUser: LoginCredentials) => {
   }
 }
 
-export const quote = async (payload: QuotePayload) => {
+export const signUp = async (user: SignUp) => {
+  try {
+    const response = await fetch(`${API_URL}/auth/signup`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(user),
+    })
+    const data = await response.json()
+    return data
+  } catch (e) {
+    throw e
+  }
+}
+
+export const createQuote = async (payload: QuotePayload) => {
   try {
     const session = await getServerSession(authOptions)
     if (session) {

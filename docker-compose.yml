@@ -4,8 +4,12 @@ services:
   frontend:
     build:
       context: ./app
+    networks:
+      - mynet
     ports:
       - "3000:3000"
+    environment:
+      - API_URL=http://backend:3001
     depends_on:
       - backend
 
@@ -15,7 +19,9 @@ services:
     ports:
       - "3001:3001"
     environment:
-      - MONGO_URI=mongodb://mongo:27017/test
+      - MONGO_URI=mongodb://mongo:27017/koywe
+    networks:
+      - mynet
     depends_on:
       - mongo
 
@@ -25,6 +31,12 @@ services:
       - mongo_data:/data/db
     ports:
       - "27017:27017"
+    networks:
+      - mynet
 
 volumes:
   mongo_data:
+
+networks:
+  mynet:
+    driver: bridge

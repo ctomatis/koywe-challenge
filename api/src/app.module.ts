@@ -13,7 +13,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 
 @Module({
   imports: [
-    MongooseModule.forRoot(process.env.MONGO_URI ?? ""),
+    MongooseModule.forRoot(process.env.MONGO_URI || "mongodb://localhost:27017/koywe"),
     AuthModule,
     UsersModule,
     ConfigModule.forRoot({

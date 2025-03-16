@@ -22,12 +22,24 @@ El proyecto está dockerizado (con ayuda de IA). Para levantarlo, ejecutá el si
 
 ```bash
 $ docker-compose up --build
+##$ make build
 ```
 
 ## Abrir el front 
-Ir a [http://localhost:3000](http://localhost:3000/) e iniciar sessión con las sguientes credenciales: john@gmail.com / changeme
+Ir a [http://localhost:3000/auth/signup](http://localhost:3000/auth/signup) y creá tu cuenta.
 
-> **Nota**: El servicio de consulta de cotizaciones no funciona en el contexto de docker(?). La respuesta está mockeda. 
+> ¿El servicio de consulta de cotizaciones **no funciona** en el contexto de Docker? Si estás corriendo Docker en WSL-Ubuntu, tenés que modificar el IP de ``nameserver`` en ``/etc/resolv.conf``:
+
+```bash
+$ sudo vim /etc/resolv.conf
+```
+```bash
+# This file ...
+#nameserver 10.255.255.254 // Comentar o eliminar esta linea.
+# Y agregar:
+nameserver 1.1.1.1
+````
+
 ---
 ---
 

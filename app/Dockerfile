@@ -11,10 +11,8 @@ RUN npm install
 # Copy the rest of the application files
 COPY . .
 
-# Build the frontend application
-#RUN npm run build
-
+RUN npm run build
 # Expose the port the app runs on
 EXPOSE 3000
 
-CMD ["npm", "run", "dev"]
+CMD ["npm", "run", "start"]
