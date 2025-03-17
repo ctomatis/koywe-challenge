@@ -1,7 +1,5 @@
 'use server'
 
-import { authOptions } from '@/auth'
-import { getServerSession } from 'next-auth'
 import { LoginCredentials } from "@/types/CredentialsLogin"
 import { SignUp } from '@/types/SignUp'
 
@@ -35,22 +33,3 @@ export const signUp = async (user: SignUp) => {
   }
 }
 
-export const createQuote = async (payload: QuotePayload) => {
-  try {
-    const session = await getServerSession(authOptions)
-    if (session) {
-      const response = await fetch(`${API_URL}/quote`, {
-        method: 'POST',
-        body: JSON.stringify(payload),
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${session.access_token}`,
-        },
-      })
-      const res = await response.json()
-      return res
-    }
-  } catch (e) {
-    throw e
-  }
-}

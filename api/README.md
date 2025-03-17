@@ -1,5 +1,7 @@
 ## Instalación
 
+> Si el back se ejecuta en el entorno no-dockerizado, es necesario instalar MongoDB en local.
+
 Ver [README](https://github.com/ctomatis/koywe-challenge?tab=readme-ov-file#configur%C3%A1-las-variables-de-entorno-de-cada-aplicaci%C3%B3n) para configuración de variables de entorno.
 
 ```bash

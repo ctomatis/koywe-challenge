@@ -7,18 +7,9 @@ import { Input } from '@heroui/input'
 import { Button } from '@heroui/button'
 import { Select, SelectItem } from "@heroui/select";
 import Spinner from "@/components/icon/spinner";
-import { createQuote } from "@/actions/auth";
-
-interface Item {
-  _id: string
-  amount: number
-  from: string
-  to: string
-  rate: number
-  createdAt: string
-  expiresAt: string
-  convertedAmount: number
-}
+import { createQuote } from "@/actions/quote";
+import { Link } from "@heroui/link";
+import { Item } from "@/types/Item";
 
 export default function QuotePage() {
   const [isDisabled, setIsDisabled] = useState<boolean>(false)
@@ -26,7 +17,8 @@ export default function QuotePage() {
   const from: string[] = ["ARS", "CLP", "MXN", "USDC", "BTC", "ETH"]
   const to: string[] = ["ETH", "USDC", "CLP", "USD", "ARS"]
 
-  const [item, setItem] = useState<Item>()
+  const [item, setItem] = useState<Item | undefined>()
+  const [err, setErr] = useState<boolean>(false)
 
   const {
     register,
@@ -39,17 +31,22 @@ export default function QuotePage() {
   const watchFrom = watch("from")
 
   const onSubmit = handleSubmit(async (formData) => {
+    setErr(false)
     setIsDisabled(true)
     try {
       const { statuscode, item } = await createQuote(formData as QuotePayload)
-      if (statuscode === 201) {
-        setItem(item as Item)
+      setItem(item as Item)
+
+      if (statuscode !== 201) {
+        setErr(true)
       }
+
     } catch (e) {
+      setErr(true)
 
     } finally {
-      //setIsDisabled(!isDisabled)
-      //reset()
+      setIsDisabled(false)
+      reset()
     }
   })
 
@@ -123,6 +120,11 @@ export default function QuotePage() {
             </div>
             {item?._id && <div className="flex flex-col w-full items-center">
               <p>{item.to} {item.convertedAmount}</p>
+              <p>ID <Link href={`/quote/${item._id}`}>{item._id}</Link></p>
+            </div>}
+
+            {err && <div className="flex flex-col w-full items-center text-danger">
+              No se pudo obtener una cotización
             </div>}
             <Button
               fullWidth

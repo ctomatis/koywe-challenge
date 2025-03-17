@@ -1,4 +1,4 @@
-export default function QuoteLayout({
+export default function FindQuoteLayout({
   children,
 }: {
   children: React.ReactNode;
